@@ -6,6 +6,7 @@ package com.departmentstore.ca2.departmentstore;
 
 import java.util.ArrayList;
 import java.io.IOException;
+import java.util.Scanner;
 /**
  *
  * @author maria
@@ -15,6 +16,7 @@ public class CA2DepartmentStore {
     public static void main(String[] args) {
         
         EmployeeFileReader reader = new EmployeeFileReader();
+        Scanner scanner = new Scanner(System.in);
         
         try {
             ArrayList<Employee> employees =
@@ -23,15 +25,71 @@ public class CA2DepartmentStore {
             System.out.println("File read correctly");
             System.out.println("Total employees: " + employees.size());
             
-            for (Employee employee : employees) {
+            boolean running = true;
+            
+            while (running) {
+                System.out.println("\n==== Department Store Employee Management ====");
                 
-                System.out.println(
-                employee.getName() + " | "
-                + employee.getManagerType() + " | "
-                + employee.getDepartment());
+                for (MenuOption option : MenuOption.values()) {
+                    System.out.println(option.getNumber() + " . "
+                    + option.getDescription());
+                }
+                
+                System.out.println("Select your option: ");
+                
+                if (!scanner.hasNextInt()) {
+                    System.out.println("Incorrect option.");
+                    scanner.nextLine();
+                    continue;
+                }
+                
+                int choice = scanner.nextInt();
+                scanner.nextLine();
+                
+                MenuOption selectedOption = null;
+                
+                for (MenuOption option : MenuOption.values()){
+                    if (option.getNumber() == choice){
+                        selectedOption = option;
+                        break;
+                    }
+                }
+                
+                if (selectedOption == null){
+                    System.out.println("Incorrect option");
+                    continue;
+                }
+                
+                switch (selectedOption){
+                    
+                    case SORT:
+                        System.out.println("Sort selected");
+                        break;
+                        
+                    case SEARCH:
+                        System.out.println("Search selected");
+                        break;
+                        
+                    case ADD_RECORDS:
+                        System.out.println("Add records selected");
+                        break;
+                    
+                    case CREATE_TREE:
+                        System.out.println("Create binary tree selected");
+                        break;
+                        
+                    case EXIT:
+                        System.out.println("Closing application now...");
+                        running = false;
+                        break;
+                }
             }
+            
         } catch (IOException e){
-            System.out.println("Error reading the file.");
+            System.out.println("Failure reading the file.");
         }
+        
+        scanner.close();
+        
     }
 }
