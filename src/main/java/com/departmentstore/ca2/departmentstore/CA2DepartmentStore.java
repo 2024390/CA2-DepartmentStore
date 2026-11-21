@@ -207,7 +207,22 @@ public class CA2DepartmentStore {
                         
                     
                     case CREATE_TREE:
-                        System.out.println("Create binary tree selected");
+                        System.out.println("Generating Binary Tree...");
+                        
+                        BinaryTree tree = new BinaryTree();
+                        
+                        int total = Math.min(20, employees.size());
+                        
+                        for (int i =0; i < total; i++){
+                            tree.insert(employees.get(i));
+                        }
+                        
+                        System.out.println("Added " + total
+                        + " employees into the Binary Tree");
+                        
+                        tree.displayLevelOrder();
+                        System.out.println("Total nodes: " + tree.countNodes());
+                        System.out.println("Tree height (levels): " + tree.getHeight());
                         break;
                         
                     case EXIT:
