@@ -63,7 +63,19 @@ public class CA2DepartmentStore {
                 switch (selectedOption){
                     
                     case SORT:
-                        System.out.println("Sort selected");
+                        System.out.println("Sorting employees by order alphabetically...");
+                        
+                        MergeSort sorter = new MergeSort();
+                        sorter.mergeSort(employees);
+                        
+                        System.out.println("\nFirst 20 employees:");
+                        
+                        int limit = Math.min(20, employees.size());
+                        
+                        for (int i = 0; i < limit; i++) {
+                            System.out.println((i + 1) + " . "
+                            + employees.get(i).getName());
+                        }
                         break;
                         
                     case SEARCH:
