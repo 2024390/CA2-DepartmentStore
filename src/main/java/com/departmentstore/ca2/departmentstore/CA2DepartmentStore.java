@@ -22,6 +22,8 @@ public class CA2DepartmentStore {
             ArrayList<Employee> employees =
                     reader.readEmployees("Applicants_Form.txt");
             
+            ArrayList<Employee> addedEmployees = new ArrayList<>();
+            
             System.out.println("File read correctly");
             System.out.println("Total employees: " + employees.size());
             
@@ -106,8 +108,103 @@ public class CA2DepartmentStore {
                         break;
                         
                     case ADD_RECORDS:
-                        System.out.println("Add records selected");
+                        System.out.println("=== Add new Employee to the list ===");
+                        
+                        System.out.println("Type employee name: ");
+                        String newName = scanner.nextLine().trim();
+                        
+                        if (newName.isEmpty()){
+                            System.out.println("Please enter a valid name");
+                        
                         break;
+                        }
+                        
+                        String[] managerTypes = {
+                            "Store Manager",
+                            "Senior Manager",
+                            "Department Manager",
+                            "Team Lead",
+                            "Staff"
+                        };
+                        System.out.println("Select Manager Type: ");
+                        for (int i =0; i < managerTypes.length; i++){
+                            System.out.println((i + 1) + " . " + managerTypes[i]);
+                        }
+                        System.out.println("Enter your choice: ");
+                        String input = scanner.nextLine();
+                        
+                        try {
+                            int managerChoice = Integer.parseInt(input);
+                            
+                            if (managerChoice < 1 || managerChoice > managerTypes.length){
+                                System.out.println("    Incorrect Manager Type");
+                                break;
+                        }
+                            String selectedManager = managerTypes[managerChoice - 1];
+                            
+                            System.out.println("Selected Manager Type: "
+                            + selectedManager);
+                            
+                          ArrayList<String> departments = new ArrayList<>();
+                          for (Employee employee : employees){
+                              String department = employee.getDepartment();
+                              
+                              if (!departments.contains(department)){
+                                  departments.add(department);
+                              }
+                          }
+                          
+                            System.out.println("Select any Department: ");
+                            
+                            for (int i = 0; i < departments.size(); i++){
+                                System.out.println((i + 1) + " . " + departments.get(i));
+                            }
+                            System.out.println("Type department option: ");
+                            String departmentInput = scanner.nextLine();
+                            
+                            try {
+                                int departmentChoice = Integer.parseInt(departmentInput);
+                                
+                                if (departmentChoice < 1 ||
+                                        departmentChoice > departments.size()){
+                                    System.out.println("Incorrect department choice");
+                                    break;
+                                }
+                                
+                                String selectedDepartment = 
+                                        departments.get(departmentChoice - 1);
+                                System.out.println("Chosen Department: "
+                                + selectedDepartment);
+                                
+                                Employee newEmployee = new Employee(
+                                newName, selectedManager, selectedDepartment);
+                                
+                                employees.add(newEmployee);
+                                addedEmployees.add(newEmployee);
+                                
+                                System.out.println("Employee details added succesfully");
+                                System.out.println("Name: " + newEmployee.getName());
+                                System.out.println("Manager Type:" + newEmployee.getManagerType());
+                                System.out.println("Department: " + newEmployee.getDepartment());
+                                
+                                System.out.println("=== New team members ===");
+                                
+                                for (Employee employee : addedEmployees){
+                                    System.out.println("Name: " + employee.getName());
+                                    System.out.println("Manager Type: " + employee.getManagerType());
+                                    System.out.println("Department: " + employee.getDepartment());
+                                    System.out.println("========================");
+                                }
+                            } catch (NumberFormatException e){
+                                System.out.println("Please type a correct department number");
+                            }
+                            
+                        } catch (NumberFormatException e){
+                            System.out.println("Please type a valid number");
+                        }
+                        break;
+                        
+                        
                     
                     case CREATE_TREE:
                         System.out.println("Create binary tree selected");
