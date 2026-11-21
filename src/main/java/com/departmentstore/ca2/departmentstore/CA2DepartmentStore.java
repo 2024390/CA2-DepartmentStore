@@ -79,7 +79,30 @@ public class CA2DepartmentStore {
                         break;
                         
                     case SEARCH:
-                        System.out.println("Search selected");
+                        System.out.println("Type employee name: ");
+                        String name = scanner.nextLine().trim();
+                        
+                        if (name.isEmpty()){
+                            System.out.println("Please type a name");
+                            break;
+                        }
+                        
+                        MergeSort searchSorter = new MergeSort();
+                        searchSorter.mergeSort(employees);
+                        
+                        BinarySearch binarySearch = new BinarySearch();
+                        
+                        Employee found = binarySearch.search(
+                        employees, name, 0, employees.size() - 1);
+                        
+                        if (found != null){
+                            System.out.println("Employee founded!");
+                            System.out.println("Name:" + found.getName());
+                            System.out.println("Manger Type:" + found.getManagerType());
+                            System.out.println("Department:" + found.getDepartment());
+                        } else {
+                            System.out.println("Employee not found");
+                        }
                         break;
                         
                     case ADD_RECORDS:
