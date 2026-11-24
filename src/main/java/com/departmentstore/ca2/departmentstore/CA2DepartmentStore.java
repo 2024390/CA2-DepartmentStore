@@ -17,6 +17,7 @@ public class CA2DepartmentStore {
         
         EmployeeFileReader reader = new EmployeeFileReader();
         Scanner scanner = new Scanner(System.in);
+        EmployeeView view = new EmployeeView();
         
         try {
             ArrayList<Employee> employees =
@@ -30,12 +31,9 @@ public class CA2DepartmentStore {
             boolean running = true;
             
             while (running) {
-                System.out.println("\n==== Department Store Employee Management ====");
+                System.out.println("====== Department Store Employee Management ======");
+                view.displayMenu();
                 
-                for (MenuOption option : MenuOption.values()) {
-                    System.out.println(option.getNumber() + " . "
-                    + option.getDescription());
-                }
                 
                 System.out.println("Select your option: ");
                 
@@ -99,9 +97,7 @@ public class CA2DepartmentStore {
                         
                         if (found != null){
                             System.out.println("Employee founded!");
-                            System.out.println("Name:" + found.getName());
-                            System.out.println("Manger Type:" + found.getManagerType());
-                            System.out.println("Department:" + found.getDepartment());
+                            view.displayEmployee(found);
                         } else {
                             System.out.println("Employee not found");
                         }
