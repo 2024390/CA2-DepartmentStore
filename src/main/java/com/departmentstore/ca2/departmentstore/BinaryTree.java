@@ -62,7 +62,10 @@ public class BinaryTree {
             
             while (!queue.isEmpty()){
                 TreeNode current = queue.remove();
-                System.out.println(current.getEmployee().getName());
+                System.out.println(
+                "Name: " + current.getEmployee().getName()
+                + " === Manager Type: " + current.getEmployee().getManagerType()
+                + " === Department: " + current.getEmployee().getDepartment());
                 
                 if (current.getLeft() != null){
                     queue.add(current.getLeft());

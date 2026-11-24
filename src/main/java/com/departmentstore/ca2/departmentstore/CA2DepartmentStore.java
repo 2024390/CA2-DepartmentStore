@@ -31,7 +31,9 @@ public class CA2DepartmentStore {
             boolean running = true;
             
             while (running) {
-                System.out.println("====== Department Store Employee Management ======");
+                System.out.println("------------------------------------------");
+                System.out.println(" - Department Store Employee Management - ");
+                System.out.println("------------------------------------------");
                 view.displayMenu();
                 
                 
@@ -68,7 +70,7 @@ public class CA2DepartmentStore {
                         MergeSort sorter = new MergeSort();
                         sorter.mergeSort(employees);
                         
-                        System.out.println("\nFirst 20 employees:");
+                        System.out.println("First 20 employees:");
                         
                         int limit = Math.min(20, employees.size());
                         
