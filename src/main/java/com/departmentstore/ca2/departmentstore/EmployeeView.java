@@ -10,6 +10,7 @@ package com.departmentstore.ca2.departmentstore;
  */
 public class EmployeeView {
     
+    // Shows the menu options using the Enum
     public void displayMenu() {
         
         for (MenuOption option : MenuOption.values()){
@@ -18,6 +19,7 @@ public class EmployeeView {
             
         }
 }
+    // Shows the details of the selected employee
     public void displayEmployee(Employee employee){
         System.out.println("Name: " + employee.getName());
         System.out.println("Job Title: " + employee.getManagerType());

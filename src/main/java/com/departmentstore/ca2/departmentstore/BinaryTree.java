@@ -18,6 +18,7 @@ public class BinaryTree {
         root = null;
     }
     
+    // Insert employees into the tree from left to right
     public void insert(Employee employee){
         TreeNode newNode = new TreeNode(employee);
         
@@ -26,6 +27,7 @@ public class BinaryTree {
             return;
         }
         
+        // Queue is for find the next availbale position
         Queue<TreeNode> queue = new LinkedList<>();
         queue.add(root);
         
@@ -48,6 +50,8 @@ public class BinaryTree {
             }
         }
         }
+        
+        // Shows all the employees level by level 
         public void displayLevelOrder(){
             if (root == null){
                 System.out.println("The tree is empty");
@@ -79,6 +83,7 @@ public class BinaryTree {
         }
         
     }
+        // Repeated counts the total nodes in the tree
         public int countNodes(){
             return countNodes(root);
         }
@@ -91,7 +96,8 @@ public class BinaryTree {
             return 1 + countNodes(node.getLeft())
                     + countNodes(node.getRight());
         }
-            
+        
+            // Repeated calculates the heigh of the tree
             public int getHeight(){
                 return getHeight(root);
             }

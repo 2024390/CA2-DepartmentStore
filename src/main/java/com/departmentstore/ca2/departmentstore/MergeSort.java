@@ -11,14 +11,17 @@ import java.util.ArrayList;
  */
 public class MergeSort {
     
+    // Sorts employee names from A to Z
     public void mergeSort(ArrayList<Employee> employees){
         
+        // It stop splitting when the list has one or no employee
         if (employees.size() <= 1){
             return;
         }
         
         int middle = employees.size() / 2;
         
+        // Separate the list into two halves 
         ArrayList<Employee> left = new ArrayList<>(
         employees.subList(0, middle));
         
@@ -28,6 +31,7 @@ public class MergeSort {
         mergeSort(left);
         mergeSort(right);
         
+        // Incorporate the sorted halves
         merge(employees, left, right);
     }
     
@@ -38,7 +42,8 @@ public class MergeSort {
         int i = 0;
         int j = 0;
         int k =0;
-        
+    
+        // Compares employee names and puts them in order
     while (i < left.size() && j < right.size()){
         if (left.get(i).getName().compareToIgnoreCase(
         right.get(j).getName()) <= 0) {
@@ -52,6 +57,7 @@ public class MergeSort {
         
         k++;
     }
+    // Add the remaining employees in either half
     while (i < left.size()){
         employees.set(k, left.get(i));
         i++;

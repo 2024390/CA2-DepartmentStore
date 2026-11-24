@@ -9,15 +9,20 @@ package com.departmentstore.ca2.departmentstore;
  * @author maria
  */
 public class Employee {
+    //Implement the employee details
     private String name;
     private String managerType;
     private String department;
+    
+    // Constructor that creates a new employee
     
     public Employee(String name, String managerType, String department){
         this.name = name;
         this.managerType = managerType;
         this.department = department;
     }
+    
+    // Getters that enters in the employee information
     
     public String getName(){
         return name;

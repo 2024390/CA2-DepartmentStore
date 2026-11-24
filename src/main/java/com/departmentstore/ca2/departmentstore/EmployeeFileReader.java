@@ -32,11 +32,11 @@ public class EmployeeFileReader {
                 
                 String name = data[0].trim() + " " + data[1].trim();
                 String department = data[5].trim();
-                String managerType = data[7].trim();
+                String jobTitle = data[7].trim();
                 
                 // Creates an employee object and adds it to the list
                 Employee employee = new Employee(
-                name, managerType, department);
+                name, jobTitle, department);
                 
                 employees.add(employee);
             }

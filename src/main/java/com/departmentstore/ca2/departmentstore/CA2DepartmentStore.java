@@ -13,13 +13,17 @@ import java.util.Scanner;
  */
 public class CA2DepartmentStore {
 
+    // Main method that start the employee management application
     public static void main(String[] args) {
         
         EmployeeFileReader reader = new EmployeeFileReader();
         Scanner scanner = new Scanner(System.in);
         EmployeeView view = new EmployeeView();
         
+        
+        
         try {
+            // Brings the employee details from the text filr
             ArrayList<Employee> employees =
                     reader.readEmployees("Applicants_Form.txt");
             
@@ -30,6 +34,7 @@ public class CA2DepartmentStore {
             
             boolean running = true;
             
+            // It keeps the menu running until the user choose exit
             while (running) {
                 System.out.println("------------------------------------------");
                 System.out.println(" - Department Store Employee Management - ");
@@ -62,11 +67,13 @@ public class CA2DepartmentStore {
                     continue;
                 }
                 
+                // Runs any selected menu 
                 switch (selectedOption){
                     
                     case SORT:
-                        System.out.println("Sorting employees by order alphabetically...");
+                        System.out.println("Sorting employees alphabetically...");
                         
+                        // Set employees alphabetically using Merge Sort
                         MergeSort sorter = new MergeSort();
                         sorter.mergeSort(employees);
                         
@@ -89,6 +96,7 @@ public class CA2DepartmentStore {
                             break;
                         }
                         
+                        // Set the list before running Binary Search 
                         MergeSort searchSorter = new MergeSort();
                         searchSorter.mergeSort(employees);
                         
@@ -98,7 +106,7 @@ public class CA2DepartmentStore {
                         employees, name, 0, employees.size() - 1);
                         
                         if (found != null){
-                            System.out.println("Employee founded!");
+                            System.out.println("Employee found!");
                             view.displayEmployee(found);
                         } else {
                             System.out.println("Employee not found");
@@ -211,6 +219,7 @@ public class CA2DepartmentStore {
                         
                         int total = Math.min(20, employees.size());
                         
+                        // Implement the first 20 employees into the Binary Tree
                         for (int i =0; i < total; i++){
                             tree.insert(employees.get(i));
                         }
